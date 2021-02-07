@@ -14,8 +14,8 @@ public class BlockInit {
 
     public static final RegistryObject<Block> MOON_ROCK_ORE = REGISTER.register("moon_rock_ore",
             () -> new Block(AbstractBlock.Properties.create(Material.ROCK)
-                    .hardnessAndResistance(4, 4)
+                    .hardnessAndResistance(5, 4)
                     .harvestTool(ToolType.PICKAXE)
                     .harvestLevel(3)
-                    .setEmmisiveRendering((x, y, z) -> true)));
+                    .setRequiresTool()));
 }
