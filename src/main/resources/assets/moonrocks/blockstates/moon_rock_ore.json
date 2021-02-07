@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "" : {
+      "model": "moonrocks:block/moon_rock_ore"
+    }
+  }
+}

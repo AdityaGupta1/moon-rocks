@@ -7,6 +7,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.sdoaj.moonrocks.core.init.BlockInit;
 import org.sdoaj.moonrocks.core.init.ItemInit;
 
 @Mod(MoonRocks.MODID)
@@ -20,7 +21,8 @@ public class MoonRocks {
 
         bus.addListener(this::setup);
 
-        ItemInit.REGISTRY.register(bus);
+        ItemInit.REGISTER.register(bus);
+        BlockInit.REGISTER.register(bus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
