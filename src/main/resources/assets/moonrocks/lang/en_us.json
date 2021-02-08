@@ -1,5 +1,7 @@
 {
   "item.moonrocks.moon_rock": "Moon Rocks",
+  "item.moonrocks.moon_rock_clump": "Moon Rock Clump",
+  "item.moonrocks.moon_crystal": "Moon Crystal",
 
   "block.moonrocks.moon_rock_ore": "Moon Rock Ore"
 }

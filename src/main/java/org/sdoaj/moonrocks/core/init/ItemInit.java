@@ -16,8 +16,9 @@ import org.sdoaj.moonrocks.core.MoonRocks;
 public class ItemInit {
     public static final DeferredRegister<Item> REGISTER = DeferredRegister.create(ForgeRegistries.ITEMS, MoonRocks.MODID);
 
-    public static final RegistryObject<Item> MOON_ROCK = REGISTER.register("moon_rock",
-            () -> new Item(defaultProperties()));
+    public static final RegistryObject<Item> MOON_ROCK = defaultItem("moon_rock");
+    public static final RegistryObject<Item> MOON_ROCK_CLUMP = defaultItem("moon_rock_clump");
+    public static final RegistryObject<Item> MOON_CRYSTAL = defaultItem("moon_crystal");
 
     @SubscribeEvent
     public static void registerBlockItems(RegistryEvent.Register<Item> event) {
@@ -27,6 +28,10 @@ public class ItemInit {
             blockItem.setRegistryName(block.getRegistryName());
             registry.register(blockItem);
         });
+    }
+
+    private static RegistryObject<Item> defaultItem(String name) {
+        return REGISTER.register(name, () -> new Item(defaultProperties()));
     }
 
     private static Item.Properties defaultProperties() {
