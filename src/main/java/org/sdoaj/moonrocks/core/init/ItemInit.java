@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
+import org.sdoaj.moonrocks.common.items.EraserItem;
 import org.sdoaj.moonrocks.core.MoonRocks;
 
 @Mod.EventBusSubscriber(modid = MoonRocks.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -19,6 +20,9 @@ public class ItemInit {
     public static final RegistryObject<Item> MOON_ROCK = defaultItem("moon_rock");
     public static final RegistryObject<Item> MOON_ROCK_CLUMP = defaultItem("moon_rock_clump");
     public static final RegistryObject<Item> MOON_CRYSTAL = defaultItem("moon_crystal");
+
+    public static final RegistryObject<Item> ERASER = REGISTER.register("eraser",
+            () -> new EraserItem(defaultProperties().defaultMaxDamage(100)));
 
     @SubscribeEvent
     public static void registerBlockItems(RegistryEvent.Register<Item> event) {
