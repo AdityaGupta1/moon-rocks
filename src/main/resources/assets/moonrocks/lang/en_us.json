@@ -6,5 +6,7 @@
   "item.moonrocks.eraser": "Eraser",
   "item.moonrocks.bar_of_soap": "Bar of Soap",
 
-  "block.moonrocks.moon_rock_ore": "Moon Rock Ore"
+  "block.moonrocks.moon_rock_ore": "Moon Rock Ore",
+
+  "itemGroup.moonrocks": "Moon Rocks"
 }

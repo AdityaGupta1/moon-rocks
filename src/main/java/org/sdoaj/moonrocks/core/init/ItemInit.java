@@ -13,6 +13,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import org.sdoaj.moonrocks.common.items.EraserItem;
 import org.sdoaj.moonrocks.common.items.SoapBarItem;
 import org.sdoaj.moonrocks.core.MoonRocks;
+import org.sdoaj.moonrocks.core.MoonRocksItemGroup;
 
 @Mod.EventBusSubscriber(modid = MoonRocks.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemInit {
@@ -42,6 +43,6 @@ public class ItemInit {
     }
 
     private static Item.Properties defaultProperties() {
-        return new Item.Properties().group(ItemGroup.MISC);
+        return new Item.Properties().group(MoonRocksItemGroup.INSTANCE);
     }
 }
