@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#M#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:milk_bucket"
+    },
+    "M": {
+      "item": "moonrocks:moon_rock"
+    }
+  },
+  "result": {
+    "item": "moonrocks:yellow_cheese",
+    "count": 12
+  }
+}

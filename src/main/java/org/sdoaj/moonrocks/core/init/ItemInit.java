@@ -12,6 +12,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.sdoaj.moonrocks.common.items.EraserItem;
 import org.sdoaj.moonrocks.common.items.SoapBarItem;
+import org.sdoaj.moonrocks.common.items.YellowCheeseItem;
 import org.sdoaj.moonrocks.core.MoonRocks;
 import org.sdoaj.moonrocks.core.MoonRocksItemGroup;
 
@@ -25,6 +26,8 @@ public class ItemInit {
 
     public static final RegistryObject<Item> ERASER = REGISTER.register("eraser",
             () -> new EraserItem(defaultProperties().defaultMaxDamage(100)));
+    public static final RegistryObject<Item> YELLOW_CHEESE = REGISTER.register("yellow_cheese",
+            () -> new YellowCheeseItem(defaultProperties().food(YellowCheeseItem.YELLOW_CHEESE)));
     public static final RegistryObject<Item> BAR_OF_SOAP = REGISTER.register("bar_of_soap",
             () -> new SoapBarItem(defaultProperties().defaultMaxDamage(1000)));
 

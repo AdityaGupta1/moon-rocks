@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#M#",
+    "MSM",
+    "#M#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:bone_meal"
+    },
+    "M": {
+      "item": "moonrocks:moon_crystal"
+    },
+    "S": {
+      "item": "minecraft:milk_bucket"
+    }
+  },
+  "result": {
+    "item": "moonrocks:bar_of_soap",
+    "count": 1
+  }
+}

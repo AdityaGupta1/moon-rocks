@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#M#",
+    "MPM",
+    "#M#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:slime_ball"
+    },
+    "M": {
+      "item": "moonrocks:moon_crystal"
+    },
+    "P": {
+      "item": "minecraft:pink_wool"
+    }
+  },
+  "result": {
+    "item": "moonrocks:eraser",
+    "count": 1
+  }
+}
