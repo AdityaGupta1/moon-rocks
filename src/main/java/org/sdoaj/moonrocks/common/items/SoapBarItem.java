@@ -9,20 +9,21 @@ import net.minecraft.item.UseAction;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SoapBarItem extends Item {
-    private static final int amplifierMultiplier = 1;
-    private static final int secondsPerDurability = 5;
+    private static final double amplifierMultiplier = 1.0;
+    private static final int ticksPerDurability = 45;
 
     public SoapBarItem(Properties properties) {
         super(properties);
@@ -35,28 +36,52 @@ public class SoapBarItem extends Item {
         tooltip.add(new StringTextComponent("so I can be clean").setStyle(style));
     }
 
+    private static final Method deincrementDuration = ObfuscationReflectionHelper.findMethod(EffectInstance.class,
+            "func_76454_e");
+
+    static {
+        deincrementDuration.setAccessible(true);
+    }
+
+    @Override
+    public void onUse(World world, LivingEntity entity, ItemStack stack, int count) {
+        if (!(entity instanceof PlayerEntity)) {
+            return;
+        }
+
+        PlayerEntity player = (PlayerEntity) entity;
+
+        List<EffectInstance> harmfulEffects = new ArrayList<>();
+        for (EffectInstance effect : player.getActivePotionEffects()) {
+            if (effect.getPotion().getEffectType() == EffectType.HARMFUL) {
+                harmfulEffects.add(effect);
+            }
+        }
+
+        if (harmfulEffects.isEmpty()) {
+            return;
+        }
+
+        EffectInstance effect = harmfulEffects.get(random.nextInt(harmfulEffects.size()));
+
+        int amplifier = effect.getAmplifier() + 1;
+        int ticks = (int) Math.ceil(ticksPerDurability / (amplifier * amplifierMultiplier));
+
+        try {
+            for (int i = 0; i < ticks; i++) {
+                deincrementDuration.invoke(effect);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        stack.damageItem(1, player, p -> p.sendBreakAnimation(p.getActiveHand()));
+    }
+
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
         ItemStack stack = player.getHeldItem(hand);
         player.setActiveHand(hand);
-
-//        List<EffectInstance> harmfulEffects = new ArrayList<>();
-//        for (EffectInstance effect : player.getActivePotionEffects()) {
-//            if (effect.getPotion().getEffectType() == EffectType.HARMFUL) {
-//                harmfulEffects.add(effect);
-//            }
-//        }
-//
-//        EffectInstance effect = harmfulEffects.get(random.nextInt(harmfulEffects.size()));
-//
-//        int maxCost = amplifierMultiplier * (effect.getAmplifier() + 1);
-//
-//        if (getDamage(stack) >= maxCost) {
-//
-//        }
-//
-//        stack.damageItem(maxCost, player, p -> p.sendBreakAnimation(hand));
-
         return ActionResult.resultSuccess(stack);
     }
 
